@@ -69,7 +69,7 @@ When running the applciaiton locally, in the config.py file uncomment line 8 and
 
 1. Clone the repository:
    
-       git clone https://github.com/abxrd/Software-engineering-project-1.git cd your-repo
+       git clone https://github.com/abxrd/Agile-Software-Engineering-Project.git cd your-repo
    
 2. Create virtual environment:
    
