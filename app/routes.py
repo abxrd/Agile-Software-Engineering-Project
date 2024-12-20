@@ -107,6 +107,10 @@ def create_ticket():
         status = request.form['status']
         priority_level = request.form['priority_level']
 
+        if not title or not description or not type_of_ticket or not start_date_str or not end_date_str or not status or not priority_level:
+            flash("All fields are required. Please fill in every field.", "danger")
+            return redirect(url_for('routes.create_ticket'))
+
         # change data type back to python data for SQLALchemy
         start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
         end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
@@ -154,7 +158,20 @@ def edit_ticket(id):
         ticket.start_date = request.form.get('start_date')
         ticket.end_date = request.form.get('end_date')
         ticket.status = request.form.get('status')
-        ticket.assigned_to = request.form.get('assigned_to') or None
+
+        assigned_to_username = request.form.get('assigned_to')
+
+        if assigned_to_username:
+
+            assigned_user = User.query.filter_by(username=assigned_to_username).first()
+
+            if assigned_user:
+                ticket.assigned_to = assigned_user.id  # Assign the employee ID (integer)
+            else:
+                flash(f"Employee '{assigned_to_username}' not found.", "danger")
+                return redirect(url_for('routes.ticket_details', id=id))
+        else:
+            ticket.assigned_to = None
 
         # Commit the changes to the database
         db.session.commit()

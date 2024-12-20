@@ -14,7 +14,11 @@
         </div>
         <div class="mb-3">
             <label for="type_of_ticket" class="form-label">Type</label>
-            <input type="text" class="form-control" id="type_of_ticket" name="type_of_ticket" value="{{ ticket.type_of_ticket }}" required>
+            <select class="form-select" id="type_of_ticket" name="type_of_ticket" required>
+                <option value="Bug" {% if ticket.type_of_ticket == "Bug" %}selected{% endif %}>Bug</option>
+                <option value="Task" {% if ticket.type_of_ticket == "Task" %}selected{% endif %}>Task</option>
+                <option value="Story" {% if ticket.type_of_ticket == "Story" %}selected{% endif %}>Story</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="priority_level" class="form-label">Priority Level</label>

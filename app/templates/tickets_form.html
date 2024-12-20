@@ -10,14 +10,14 @@
         </div>
         <div class="mb-3">
             <label for="description" class="form-label"><strong>Ticket Description</strong></label>
-            <textarea class="form-control" id="description" name="description" rows="4"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
         </div>
         <div class="mb-3">
             <label for="type_of_ticket" class="form-label"><strong>Ticket Type</strong></label>
             <select class="form-control" id="type_of_ticket" name="type_of_ticket" required>
-                <option value="bug">Bug</option>
-                <option value="task">Task</option>
-                <option value="story">Story</option>
+                <option value="Bug">Bug</option>
+                <option value="Task">Task</option>
+                <option value="Story">Story</option>
             </select>
         </div>
         <div class="mb-3">
@@ -38,11 +38,11 @@
         </div>
         <div class="mb-3">
             <label for="start_date" class="form-label"><strong>Ticket Start Date</strong></label>
-            <input type="date" class="form-control" id="start_date" name="start_date">
+            <input type="date" class="form-control" id="start_date" name="start_date" required>
         </div>
         <div class="mb-3">
             <label for="end_date" class="form-label"><strong>Ticket End Date</strong></label>
-            <input type="date" class="form-control" id="end_date" name="end_date">
+            <input type="date" class="form-control" id="end_date" name="end_date" required>
         </div>
         <button type="submit" class="btn btn-success">Submit</button>
         <a href="{{ url_for('routes.dashboard') }}" class="btn btn-secondary">Cancel</a>
