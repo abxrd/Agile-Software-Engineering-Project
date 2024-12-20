@@ -108,6 +108,7 @@ def create_ticket():
         # Add the ticket to the database
         db.session.add(ticket)
         db.session.commit()
+        flash('Ticket successfully created!', 'success')
         return redirect(url_for('routes.dashboard'))
 
     return render_template('tickets_form.html')
@@ -178,6 +179,7 @@ def delete_ticket(id):
     ticket = Ticket.query.get(id)
     db.session.delete(ticket)
     db.session.commit()
+    flash('The ticket has been deleted', 'success')
     return redirect(url_for('routes.dashboard'))
 
 @app_routes.route('/retrieve_users')
@@ -195,6 +197,7 @@ def delete_user(id):
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()
+    flash('User successfully deleted!', 'success')
     return render_template('user_management.html')
 
 @app_routes.route('/user/<int:id>/update', methods = ['POST'])
@@ -205,6 +208,7 @@ def update_user_role(id):
 
     user.role = request.form['role']
     db.session.commit()
+    flash('User role successfully updated!', 'success')
     return redirect(url_for('routes.dashboard'))
 
 @app_routes.route('/user/<int:id>/details')
