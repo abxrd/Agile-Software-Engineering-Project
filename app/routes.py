@@ -218,13 +218,16 @@ def retrieve_users():
 @app_routes.route('/users/<int:id>/delete', methods = ['POST'])
 @login_required
 def delete_user(id):
+    if current_user.role == 'employee':
+        flash('You are not allowed to delete users', 'danger')
+        return redirect(url_for('routes.index'))
 
     # Retrieve user by ID, delete, then commit changes to the database
     user = User.query.get(id)
     db.session.delete(user)
     db.session.commit()
     flash('User successfully deleted!', 'success')
-    return render_template('user_management.html')
+    return redirect(url_for('routes.index'))
 
 @app_routes.route('/user/<int:id>/update', methods = ['POST'])
 @login_required

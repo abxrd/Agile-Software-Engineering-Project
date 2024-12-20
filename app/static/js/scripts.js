@@ -78,6 +78,6 @@ function confirmDelete(ticketId) {
 //Delete User
 function confirmDeleteUser(userId) {
     if (confirm('Are you sure you want to delete this user?')) {
-        document.getElementById(`delete-ticket-${userId}`).submit();
+        document.getElementById(`delete-user-${userId}`).submit();
     }
 }
