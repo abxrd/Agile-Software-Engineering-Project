@@ -21,7 +21,7 @@
                 </a></td>
                 <td>
                     <form method="POST" action="{{ url_for('routes.update_user_role', id=user.id) }}" class="d-inline">
-                        <select name="status" class="form-control form-control-sm d-inline w-auto">
+                        <select name="role" class="form-control form-control-sm d-inline w-auto">
                             <option value="manager" {% if user.role == 'manager' %}selected{% endif %}>Manager</option>
                             <option value="employee" {% if user.role == 'employee' %}selected{% endif %}>Employee</option>
                         </select>

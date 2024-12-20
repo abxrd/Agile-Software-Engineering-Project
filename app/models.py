@@ -3,7 +3,7 @@ from flask_login import UserMixin
 
 # creating the User database and setting data types in model
 class User(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     password_hash = db.Column(db.String(128), nullable=False)
     role = db.Column(db.String(80), nullable=False, default='employee') # is the user 'manager' or 'employee'
@@ -22,7 +22,7 @@ class User(db.Model, UserMixin):
 
 # creating the Ticket database and setting data types in model
 class Ticket(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     title = db.Column(db.String(80), nullable=False)
     type_of_ticket = db.Column(db.String(80), nullable=False)
     priority_level = db.Column(db.String(80), nullable=False)

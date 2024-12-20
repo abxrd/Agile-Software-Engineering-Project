@@ -56,8 +56,17 @@ def register():
             flash('Username already exists. Please choose a different username.', 'danger')
             return redirect(url_for('routes.register'))
 
+        # Retrieve the highest id currently in the database
+        max_id = db.session.query(db.func.max(User.id)).scalar()
+        # Add one to the highest
+        next_id = (max_id or 0) + 1
+
         # Create the new user
-        user = User(username=username, role=role)
+        user = User(
+            id=next_id,
+            username=username,
+            role=role
+        )
         user.set_password(password)  # Hash the password before storing
 
         # Add the user to the database
@@ -102,8 +111,20 @@ def create_ticket():
         start_date = datetime.strptime(start_date_str, '%Y-%m-%d').date()
         end_date = datetime.strptime(end_date_str, '%Y-%m-%d').date()
 
-        ticket = Ticket(title=title, description=description, type_of_ticket=type_of_ticket, start_date=start_date, end_date=end_date,
-                        status=status, priority_level=priority_level)
+        # Retrieve the highest id currently in the database
+        max_id = db.session.query(db.func.max(Ticket.id)).scalar()
+        # Add one to the highest
+        next_id = (max_id or 0) + 1
+
+        ticket = Ticket(
+            id=next_id,
+            title=title,
+            description=description,
+            type_of_ticket=type_of_ticket,
+            start_date=start_date,
+            end_date=end_date,
+            status=status,
+            priority_level=priority_level)
 
         # Add the ticket to the database
         db.session.add(ticket)
@@ -154,7 +175,12 @@ def update_ticket(id):
         flash('You are not allowed to update tickets', 'danger')
         return redirect(url_for('routes.dashboard'))
 
-    ticket.status = request.form['status']
+    new_status = request.form['status']
+
+    if ticket.status == new_status:
+        flash('The status is already set to this value!', 'danger')
+        return redirect(url_for('routes.dashboard'))
+
     db.session.commit()
     flash('The status has been updated', 'success')
     return redirect(url_for('routes.dashboard'))
@@ -206,7 +232,12 @@ def update_user_role(id):
     # Retrieve the user by ID
     user = User.query.get(id)
 
-    user.role = request.form['role']
+    new_role = request.form['role']
+
+    if user.role == new_role:
+        flash('The role is already set to this value!', 'danger')
+        return redirect(url_for('routes.dashboard'))
+
     db.session.commit()
     flash('User role successfully updated!', 'success')
     return redirect(url_for('routes.dashboard'))
