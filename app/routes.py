@@ -155,6 +155,7 @@ def update_ticket(id):
 
     ticket.status = request.form['status']
     db.session.commit()
+    flash('The status has been updated', 'success')
     return redirect(url_for('routes.dashboard'))
 
 @app_routes.route('/tickets/<int:id>/assign', methods = ['POST'])
