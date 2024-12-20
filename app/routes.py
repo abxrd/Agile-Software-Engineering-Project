@@ -198,6 +198,9 @@ def update_ticket(id):
         flash('The status is already set to this value!', 'danger')
         return redirect(url_for('routes.dashboard'))
 
+    #set the new status
+    ticket.status = new_status
+
     db.session.commit()
     flash('The status has been updated', 'success')
     return redirect(url_for('routes.dashboard'))
@@ -257,6 +260,9 @@ def update_user_role(id):
     if user.role == new_role:
         flash('The role is already set to this value!', 'danger')
         return redirect(url_for('routes.dashboard'))
+
+    #set the update role
+    user.role = new_role
 
     db.session.commit()
     flash('User role successfully updated!', 'success')
