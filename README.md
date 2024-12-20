@@ -2,7 +2,7 @@
 
 This website tracks a list of tickets within a sprint to enable scrum teams to track and manage their workload within a
 dedicated sprint. Furthermore, the kanban board clearly highlights the priority and urgency and tracks their progress to
-completion.
+completion. [View application in production environment](https://agile-software-engineering-project.vercel.app/)
 
 # PROJECT DESCRIPTION
 The scrum team development ticket tracking application is a platform which has been created for the My Aviva hub scrum
