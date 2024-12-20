@@ -104,3 +104,6 @@ Employee two:
 - [PythonProgramming.net - Password Hashing with Flask Tutorial](https://pythonprogramming.net/password-hashing-flask-tutorial/)
 - [w3schools - JavaScript Forms](https://www.w3schools.com/js/js_validation.asp)
 - [Deploying Application to Vercel](https://www.youtube.com/watch?v=sbnU0VRRUqg)
+
+# Decloration 
+This source code was developed by Alex Bird as part of the DTS Software Engineering and Agile Level 5, QA, Date: 20/12/2024
